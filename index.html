@@ -1,101 +1,148 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitation Mariage - Benabiayau & Wedi</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0e0e0e;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      background-image: url('Photo.jpg'); /* remplace par ta photo */
-      background-size: cover;
-      background-position: center;
-    }
+    <meta charset="UTF-8">
+    <title>Invitation Mariage</title>
 
-    .container {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 40px;
-      border-radius: 20px;
-      display: inline-block;
-      max-width: 500px;
-    }
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f4ef;
+            color: #2c2c2c;
+        }
 
-    h1 {
-      color: gold;
-      font-size: 1.8em;
-    }
+        .header {
+            width: 100%;
+            height: 350px;
+            background-image: url("photo.jpg"); /* ← PHOTO DU COUPLE */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 6px solid #c59d5f;
+        }
 
-    .invite {
-      margin: 20px 0;
-      font-size: 1.2em;
-      color: #fff;
-      background: rgba(255, 215, 0, 0.2);
-      padding: 10px;
-      border-radius: 10px;
-    }
+        .container {
+            max-width: 750px;
+            margin: auto;
+            padding: 25px;
+        }
 
-    #qrcode {
-      margin-top: 20px;
-    }
+        h1 {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 5px;
+            color: #c59d5f;
+        }
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #ccc;
-    }
-  </style>
+        h2 {
+            text-align: center;
+            font-size: 22px;
+            margin-top: 0;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .invite-block {
+            background: white;
+            border: 2px solid #c59d5f;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 25px;
+        }
+
+        .invite-info {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .phrase {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            color: #7a7a7a;
+        }
+
+        hr.style {
+            border: 0;
+            height: 2px;
+            background: #c59d5f;
+            width: 80%;
+            margin: 25px auto;
+        }
+    </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>💍 Mariage de Benabiayau Jérémie & Wedi Cynthia 💍</h1>
-    <p>Nous avons l'honneur de vous inviter à célébrer notre union.</p>
-    <p><strong>Date :</strong> 20 DECEMBRE 2025</p>
-    <p><strong>Heure :</strong> 19H00</p>
-    <p><strong>Lieu :</strong> Av. Eyala n°1, C/Kasa Vubu, Réf. Rond-point Victoire rawbank, Salle La Merveille</p>
+    <!-- MUSIQUE -->
+    <audio autoplay loop>
+        <source src="music.mp3" type="audio/mpeg"> <!-- ← TA MUSIQUE -->
+    </audio>
 
-    <div class="invite" id="nomInvite">
-      Chargement du nom de l'invité...
+    <!-- PHOTO DU COUPLE -->
+    <div class="header"></div>
+
+    <div class="container">
+        
+        <h1>Jérémie & Cynthia</h1>
+        <h2>Vous invitent à célébrer leur union 💍</h2>
+
+        <hr class="style">
+
+        <p style="font-size:18px; line-height:1.6;">
+            C’est avec une immense joie que les familles <b>Benabiayau</b> et <b>Wediondo</b>
+            vous annoncent l’union de leurs enfants,
+            <br><br>
+            <b>Benabiayau Jérémie</b><br>
+            et<br>
+            <b>Wediondo Cynthia</b> 💍
+            <br><br>
+            Ils ont l’honneur de vous inviter à célébrer leur mariage,
+            qui aura lieu le <b>samedi 20 décembre 2025</b>,
+            à la <b>Salle La Merveille</b>, située sur l’<b>Avenue Eyala N°1</b>,
+            Commune de <b>Kasa-Vubu</b>, Référence <b>Rond-Point Victoire – Rawbank</b>.
+            <br><br>
+            La cérémonie débutera à <b>19h00 précises</b>.
+        </p>
+
+        <div class="invite-block">
+            <h2>Invitation personnelle</h2>
+
+            <!-- NOM DE L’INVITÉ -->
+            <div class="invite-info">
+                Nom de l’invité : <b id="nomInvite">Invité</b>
+            </div>
+
+            <!-- TABLE -->
+            <div class="invite-info">
+                Table : <b id="tableInvite">-</b>
+            </div>
+        </div>
+
+        <p class="phrase">“Le vrai amour ne se trouve pas, il se construit chaque jour.” 💫</p>
+
     </div>
 
-    <p>🎁 Cadeaux et présence seront grandement appréciés 🎁</p>
+    <script>
+        // ================================
+        //   SYSTEME D’INVITATION PERSONNALISÉE
+        // ================================
 
-    <div id="qrcode"></div>
-  </div>
+        const url = new URL(window.location.href);
+        const invite = url.searchParams.get("invite");
+        const table = url.searchParams.get("table");
 
-  <footer>
-    © 2025 - Benabiayau & Wedi | Créé avec ❤️ par Prince Wandenga
-  </footer>
+        if (invite) {
+            document.getElementById("nomInvite").textContent = invite;
+        }
 
-  <audio src="musique.mp3" autoplay loop></audio>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script>
-    // Lecture du nom dans l'URL
-    const params = new URLSearchParams(window.location.search);
-    const invite = params.get("invite");
-    const nomDiv = document.getElementById("nomInvite");
-
-    if (invite) {
-      nomDiv.textContent = `Cher(e) ${invite}, vous êtes cordialement invité(e) à notre mariage 💕`;
-    } else {
-      nomDiv.textContent = "Cher invité, vous êtes cordialement invité(e) à notre mariage 💕";
-    }
-
-    // Génération du QR code
-    const qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: window.location.href,
-      width: 150,
-      height: 150,
-      colorDark : "#FFD700",
-      colorLight : "#000000",
-    });
-  </script>
+        if (table) {
+            document.getElementById("tableInvite").textContent = table;
+        }
+    </script>
 
 </body>
 </html>
-
